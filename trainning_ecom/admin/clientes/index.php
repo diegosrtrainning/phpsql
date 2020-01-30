@@ -71,8 +71,7 @@
                     //                         "<form style='display: inline; padding-right: 20px' action='excluir.php' method='post'>" .
                     //                             "<input type='hidden' name='id' value='$cliente->id' />".
                     //                             "<input type='submit' class='btn btn-danger' value='Deletar' />".
-                    //                         "</form>".
-                    //                         "<a class='btn btn-primary' href='cadastro.php?id=$cliente->id'>Editar</a>".
+                    //                         "</form>".                    
                     //                     "</td>".
                     //                 "</tr>";                    
                     //     }                                                
