@@ -1,0 +1,31 @@
+.logo{
+    position: absolute;
+}
+
+.navbar-collapse{
+    margin-left: 100px;
+}
+
+.card-container{
+    box-sizing: border-box;
+    padding: 10px;
+}
+
+.card{            
+    border: none;
+    padding: 8px;
+}
+
+.card-border img{
+    max-width: 255px;
+}
+
+.card-border{
+    padding: 8px;
+    border: 1px solid #c3c3c3;
+}
+
+.form-add,
+.form-rmv{
+    display: inline-block;    
+}

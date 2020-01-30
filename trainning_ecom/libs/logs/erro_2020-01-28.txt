@@ -1,0 +1,290 @@
+[28/01/2020 14:23:25] => Diego Rodrigues
+Arquivo: C:\wamp\www\trainning\phpfoundation\bonus\bonus1\cadastro-endereco.php
+Linha: 23
+Erro: CEP kjjkhkjhkj não localizado
+
+[28/01/2020 14:23:27] => Diego Rodrigues
+Arquivo: C:\wamp\www\trainning\phpfoundation\bonus\bonus1\cadastro-endereco.php
+Linha: 23
+Erro: CEP kjjkhkjhkj não localizado
+
+[28/01/2020 14:30:03] => Diego Rodrigues
+Arquivo: C:\wamp\www\trainning\phpfoundation\bonus\bonus1\cadastro-endereco.php
+Linha: 23
+Erro: CEP kjjkhkjhkj não localizado
+
+[28/01/2020 14:30:11] => Diego Rodrigues
+Arquivo: C:\wamp\www\trainning\phpfoundation\bonus\bonus1\cadastro-endereco.php
+Linha: 23
+Erro: CEP kjjkhkjhkj não localizado
+
+[28/01/2020 14:30:14] => Diego Rodrigues
+Arquivo: C:\wamp\www\trainning\phpfoundation\bonus\bonus1\cadastro-endereco.php
+Linha: 23
+Erro: CEP kjjkhkjhkj não localizado
+
+[28/01/2020 14:30:17] => Diego Rodrigues
+Arquivo: C:\wamp\www\trainning\phpfoundation\bonus\bonus1\cadastro-endereco.php
+Linha: 23
+Erro: CEP kjjkhkjhkj não localizado
+
+[28/01/2020 14:30:19] => Diego Rodrigues
+Arquivo: C:\wamp\www\trainning\phpfoundation\bonus\bonus1\cadastro-endereco.php
+Linha: 23
+Erro: CEP kjjkhkjhkj não localizado
+
+[28/01/2020 14:30:46] => Diego Rodrigues
+Arquivo: C:\wamp\www\trainning\phpfoundation\bonus\bonus1\cadastro-endereco.php
+Linha: 23
+Erro: CEP kjjkhkjhkj não localizado
+
+[28/01/2020 14:30:52] => Diego Rodrigues
+Arquivo: C:\wamp\www\trainning\phpfoundation\bonus\bonus1\cadastro-endereco.php
+Linha: 23
+Erro: CEP kjjkhkjhkj não localizado
+
+[28/01/2020 14:31:27] => Diego Rodrigues
+Arquivo: C:\wamp\www\trainning\phpfoundation\bonus\bonus1\cadastro-endereco.php
+Linha: 23
+Erro: CEP kjjkhkjhkj não localizado
+
+[28/01/2020 14:31:30] => Diego Rodrigues
+Arquivo: C:\wamp\www\trainning\phpfoundation\bonus\bonus1\cadastro-endereco.php
+Linha: 23
+Erro: CEP kjjkhkjhkj não localizado
+
+[28/01/2020 14:31:32] => Diego Rodrigues
+Arquivo: C:\wamp\www\trainning\phpfoundation\bonus\bonus1\cadastro-endereco.php
+Linha: 23
+Erro: CEP kjjkhkjhkj não localizado
+
+[28/01/2020 14:31:39] => Diego Rodrigues
+Arquivo: C:\wamp\www\trainning\phpfoundation\bonus\bonus1\cadastro-endereco.php
+Linha: 23
+Erro: CEP kjjkhkjhkj não localizado
+
+[28/01/2020 14:31:43] => Diego Rodrigues
+Arquivo: C:\wamp\www\trainning\phpfoundation\bonus\bonus1\cadastro-endereco.php
+Linha: 23
+Erro: CEP kjjkhkjhkj não localizado
+
+[28/01/2020 14:32:43] => Diego Rodrigues
+Arquivo: C:\wamp\www\trainning\phpfoundation\bonus\bonus1\cadastro-endereco.php
+Linha: 23
+Erro: CEP kjjkhkjhkj não localizado
+
+[28/01/2020 14:32:54] => Diego Rodrigues
+Arquivo: C:\wamp\www\trainning\phpfoundation\bonus\bonus1\cadastro-endereco.php
+Linha: 23
+Erro: CEP kjjkhkjhkj não localizado
+
+[28/01/2020 14:33:02] => 
+Arquivo: C:\wamp\www\trainning\phpfoundation\bonus\bonus1\cadastro-endereco.php
+Linha: 23
+Erro: CEP kjjkhkjhkj não localizado
+
+[28/01/2020 14:33:03] => 
+Arquivo: C:\wamp\www\trainning\phpfoundation\bonus\bonus1\cadastro-endereco.php
+Linha: 23
+Erro: CEP kjjkhkjhkj não localizado
+
+[28/01/2020 14:33:04] => 
+Arquivo: C:\wamp\www\trainning\phpfoundation\bonus\bonus1\cadastro-endereco.php
+Linha: 23
+Erro: CEP kjjkhkjhkj não localizado
+
+[28/01/2020 14:33:05] => 
+Arquivo: C:\wamp\www\trainning\phpfoundation\bonus\bonus1\cadastro-endereco.php
+Linha: 23
+Erro: CEP kjjkhkjhkj não localizado
+
+[28/01/2020 14:33:06] => 
+Arquivo: C:\wamp\www\trainning\phpfoundation\bonus\bonus1\cadastro-endereco.php
+Linha: 23
+Erro: CEP kjjkhkjhkj não localizado
+
+[28/01/2020 14:33:07] => 
+Arquivo: C:\wamp\www\trainning\phpfoundation\bonus\bonus1\cadastro-endereco.php
+Linha: 23
+Erro: CEP kjjkhkjhkj não localizado
+
+[28/01/2020 14:33:08] => 
+Arquivo: C:\wamp\www\trainning\phpfoundation\bonus\bonus1\cadastro-endereco.php
+Linha: 23
+Erro: CEP kjjkhkjhkj não localizado
+
+[28/01/2020 14:33:09] => 
+Arquivo: C:\wamp\www\trainning\phpfoundation\bonus\bonus1\cadastro-endereco.php
+Linha: 23
+Erro: CEP kjjkhkjhkj não localizado
+
+[28/01/2020 14:33:10] => 
+Arquivo: C:\wamp\www\trainning\phpfoundation\bonus\bonus1\cadastro-endereco.php
+Linha: 23
+Erro: CEP kjjkhkjhkj não localizado
+
+[28/01/2020 14:33:11] => 
+Arquivo: C:\wamp\www\trainning\phpfoundation\bonus\bonus1\cadastro-endereco.php
+Linha: 23
+Erro: CEP kjjkhkjhkj não localizado
+
+[28/01/2020 14:33:12] => 
+Arquivo: C:\wamp\www\trainning\phpfoundation\bonus\bonus1\cadastro-endereco.php
+Linha: 23
+Erro: CEP kjjkhkjhkj não localizado
+
+[28/01/2020 14:33:14] => 
+Arquivo: C:\wamp\www\trainning\phpfoundation\bonus\bonus1\cadastro-endereco.php
+Linha: 23
+Erro: CEP kjjkhkjhkj não localizado
+
+[28/01/2020 14:33:15] => 
+Arquivo: C:\wamp\www\trainning\phpfoundation\bonus\bonus1\cadastro-endereco.php
+Linha: 23
+Erro: CEP kjjkhkjhkj não localizado
+
+[28/01/2020 14:33:16] => 
+Arquivo: C:\wamp\www\trainning\phpfoundation\bonus\bonus1\cadastro-endereco.php
+Linha: 23
+Erro: CEP kjjkhkjhkj não localizado
+
+[28/01/2020 14:33:17] => 
+Arquivo: C:\wamp\www\trainning\phpfoundation\bonus\bonus1\cadastro-endereco.php
+Linha: 23
+Erro: CEP kjjkhkjhkj não localizado
+
+[28/01/2020 14:33:18] => 
+Arquivo: C:\wamp\www\trainning\phpfoundation\bonus\bonus1\cadastro-endereco.php
+Linha: 23
+Erro: CEP kjjkhkjhkj não localizado
+
+[28/01/2020 14:33:19] => 
+Arquivo: C:\wamp\www\trainning\phpfoundation\bonus\bonus1\cadastro-endereco.php
+Linha: 23
+Erro: CEP kjjkhkjhkj não localizado
+
+[28/01/2020 14:33:20] => 
+Arquivo: C:\wamp\www\trainning\phpfoundation\bonus\bonus1\cadastro-endereco.php
+Linha: 23
+Erro: CEP kjjkhkjhkj não localizado
+
+[28/01/2020 14:33:21] => 
+Arquivo: C:\wamp\www\trainning\phpfoundation\bonus\bonus1\cadastro-endereco.php
+Linha: 23
+Erro: CEP kjjkhkjhkj não localizado
+
+[28/01/2020 14:33:22] => 
+Arquivo: C:\wamp\www\trainning\phpfoundation\bonus\bonus1\cadastro-endereco.php
+Linha: 23
+Erro: CEP kjjkhkjhkj não localizado
+
+[28/01/2020 14:33:23] => 
+Arquivo: C:\wamp\www\trainning\phpfoundation\bonus\bonus1\cadastro-endereco.php
+Linha: 23
+Erro: CEP kjjkhkjhkj não localizado
+
+[28/01/2020 14:33:24] => 
+Arquivo: C:\wamp\www\trainning\phpfoundation\bonus\bonus1\cadastro-endereco.php
+Linha: 23
+Erro: CEP kjjkhkjhkj não localizado
+
+[28/01/2020 14:33:26] => 
+Arquivo: C:\wamp\www\trainning\phpfoundation\bonus\bonus1\cadastro-endereco.php
+Linha: 23
+Erro: CEP kjjkhkjhkj não localizado
+
+[28/01/2020 14:33:27] => 
+Arquivo: C:\wamp\www\trainning\phpfoundation\bonus\bonus1\cadastro-endereco.php
+Linha: 23
+Erro: CEP kjjkhkjhkj não localizado
+
+[28/01/2020 14:33:28] => 
+Arquivo: C:\wamp\www\trainning\phpfoundation\bonus\bonus1\cadastro-endereco.php
+Linha: 23
+Erro: CEP kjjkhkjhkj não localizado
+
+[28/01/2020 14:33:29] => 
+Arquivo: C:\wamp\www\trainning\phpfoundation\bonus\bonus1\cadastro-endereco.php
+Linha: 23
+Erro: CEP kjjkhkjhkj não localizado
+
+[28/01/2020 14:33:30] => 
+Arquivo: C:\wamp\www\trainning\phpfoundation\bonus\bonus1\cadastro-endereco.php
+Linha: 23
+Erro: CEP kjjkhkjhkj não localizado
+
+[28/01/2020 14:33:31] => 
+Arquivo: C:\wamp\www\trainning\phpfoundation\bonus\bonus1\cadastro-endereco.php
+Linha: 23
+Erro: CEP kjjkhkjhkj não localizado
+
+[28/01/2020 14:33:32] => 
+Arquivo: C:\wamp\www\trainning\phpfoundation\bonus\bonus1\cadastro-endereco.php
+Linha: 23
+Erro: CEP kjjkhkjhkj não localizado
+
+[28/01/2020 14:33:33] => 
+Arquivo: C:\wamp\www\trainning\phpfoundation\bonus\bonus1\cadastro-endereco.php
+Linha: 23
+Erro: CEP kjjkhkjhkj não localizado
+
+[28/01/2020 14:33:34] => 
+Arquivo: C:\wamp\www\trainning\phpfoundation\bonus\bonus1\cadastro-endereco.php
+Linha: 23
+Erro: CEP kjjkhkjhkj não localizado
+
+[28/01/2020 14:33:34] => 
+Arquivo: C:\wamp\www\trainning\phpfoundation\bonus\bonus1\cadastro-endereco.php
+Linha: 23
+Erro: CEP kjjkhkjhkj não localizado
+
+[28/01/2020 14:33:35] => 
+Arquivo: C:\wamp\www\trainning\phpfoundation\bonus\bonus1\cadastro-endereco.php
+Linha: 23
+Erro: CEP kjjkhkjhkj não localizado
+
+[28/01/2020 14:33:35] => 
+Arquivo: C:\wamp\www\trainning\phpfoundation\bonus\bonus1\cadastro-endereco.php
+Linha: 23
+Erro: CEP kjjkhkjhkj não localizado
+
+[28/01/2020 14:33:36] => 
+Arquivo: C:\wamp\www\trainning\phpfoundation\bonus\bonus1\cadastro-endereco.php
+Linha: 23
+Erro: CEP kjjkhkjhkj não localizado
+
+[28/01/2020 14:33:37] => 
+Arquivo: C:\wamp\www\trainning\phpfoundation\bonus\bonus1\cadastro-endereco.php
+Linha: 23
+Erro: CEP kjjkhkjhkj não localizado
+
+[28/01/2020 14:33:37] => 
+Arquivo: C:\wamp\www\trainning\phpfoundation\bonus\bonus1\cadastro-endereco.php
+Linha: 23
+Erro: CEP kjjkhkjhkj não localizado
+
+[28/01/2020 14:33:38] => 
+Arquivo: C:\wamp\www\trainning\phpfoundation\bonus\bonus1\cadastro-endereco.php
+Linha: 23
+Erro: CEP kjjkhkjhkj não localizado
+
+[28/01/2020 14:33:38] => 
+Arquivo: C:\wamp\www\trainning\phpfoundation\bonus\bonus1\cadastro-endereco.php
+Linha: 23
+Erro: CEP kjjkhkjhkj não localizado
+
+[28/01/2020 14:33:39] => 
+Arquivo: C:\wamp\www\trainning\phpfoundation\bonus\bonus1\cadastro-endereco.php
+Linha: 23
+Erro: CEP kjjkhkjhkj não localizado
+
+[28/01/2020 14:33:40] => 
+Arquivo: C:\wamp\www\trainning\phpfoundation\bonus\bonus1\cadastro-endereco.php
+Linha: 23
+Erro: CEP kjjkhkjhkj não localizado
+
+[28/01/2020 14:33:40] => 
+Arquivo: C:\wamp\www\trainning\phpfoundation\bonus\bonus1\cadastro-endereco.php
+Linha: 23
+Erro: CEP kjjkhkjhkj não localizado
+

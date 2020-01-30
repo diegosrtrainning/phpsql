@@ -1,0 +1,53 @@
+@import "bootstrap.min.css";
+@import "font-awesome.css";
+
+#container{
+    border: none;
+    padding-top: 100px !important;
+    padding-bottom: 70px !important;
+}
+
+.btn-logout{
+    font-size: 8pt !important;    
+    padding-right: 30px;
+}
+
+.btn-logout:hover{
+
+    color: red
+}
+
+.user-profile{
+    padding-left: 20px;
+}
+.user-profile img{
+    width: 50px;
+    height: 50px;
+    border: 1px solid ccc;
+    border-radius: 50%;        
+}
+
+nav{
+    border-bottom: 1px solid #c3c3c3;
+    
+}
+
+nav.bg-light{
+    position: fixed !important; 
+    width: 100%;
+    z-index: 999;
+}
+
+.total-car{
+    position: absolute;
+}
+
+/*https://fontawesome.com/v4.7.0/icons/*/
+.title-section{
+    margin-top: 0px;
+    margin-bottom: 20px;
+}
+
+.nome-cliente{
+    
+}

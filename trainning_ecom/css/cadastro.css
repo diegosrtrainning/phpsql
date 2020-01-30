@@ -1,0 +1,36 @@
+.form-container{    
+    padding-top: 100px;
+    border: 2px solid red;
+}
+
+.img-user{
+    padding: 8px;
+    margin: 8px;
+    max-width: 250px;
+    border: 1px solid lightgray;
+    border-radius: 50%;
+}
+
+.span-foto{
+    color: gray;    
+    display: inline-block;
+    margin: 20px;
+    text-transform: uppercase;
+}
+
+.form-fields{
+    padding: 8px 25px 8px 8px ;
+    border-right: 1px solid lightgray;
+}
+
+.form-buttons{
+    padding-top: 15px;
+    margin-top: 15px;
+    border-top: 1px solid lightgray;
+}
+
+.form-endereco{
+    border-top: 1px solid lightgray;
+    padding: 20px 0;
+    margin-top: 50px;
+}
