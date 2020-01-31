@@ -35,7 +35,7 @@ CREATE TABLE `categoria` (
 
 LOCK TABLES `categoria` WRITE;
 /*!40000 ALTER TABLE `categoria` DISABLE KEYS */;
-INSERT INTO `categoria` VALUES (1,'Informática'),(2,'Papelaria'),(3,'Livraria'),(4,'teste'),(5,'teste 2'),(6,'teste 2');
+INSERT INTO `categoria` VALUES (1,'Informática'),(2,'Papelaria'),(3,'Livros'),(4,'Eletrodomésticos'),(5,'Games'),(6,'Brinquedos');
 /*!40000 ALTER TABLE `categoria` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -343,7 +343,7 @@ CREATE TABLE `produto` (
   PRIMARY KEY (`id_produto`),
   KEY `produto_fk` (`id_categoria`),
   CONSTRAINT `produto_fk` FOREIGN KEY (`id_categoria`) REFERENCES `categoria` (`id_categoria`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='Tab de produtos comercializados.';
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COMMENT='Tab de produtos comercializados.';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -352,7 +352,7 @@ CREATE TABLE `produto` (
 
 LOCK TABLES `produto` WRITE;
 /*!40000 ALTER TABLE `produto` DISABLE KEYS */;
-INSERT INTO `produto` VALUES (1,'Notebook','Lorem',1999,1,1,'media/produtos/notebook.jpg');
+INSERT INTO `produto` VALUES (1,'Notebook','Lorem',1999,1,1,'media/produtos/notebook.jpg'),(2,'Iphone','Lorem',5000,1,1,'media/produtos/iphone.jpg'),(3,'Mi true wireless','Lorem',130,1,1,'media/produtos/mi.jpg'),(4,'Impressora','Lorem',899,1,1,'media/produtos/print.jpg'),(5,'HD Externo','Lorem',1099,1,1,'media/produtos/hd.jpg'),(6,'Dulce Gusto','Lorem',400,1,4,'media/produtos/dulce.png'),(7,'Como fazer amigos','Lorem',23,1,3,'media/produtos/livro1.png'),(8,'The Last Of Us Part II - PS4','Lorem',249,1,5,'media/produtos/jogo1.png'),(9,'Spider-Man','Lorem',159,1,6,'media/produtos/brinquedo1.png');
 /*!40000 ALTER TABLE `produto` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -476,4 +476,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-01-31 16:59:12
+-- Dump completed on 2020-01-31 18:56:30

@@ -21,8 +21,7 @@
                 Meu Carrinho
             </div>            
         </div>                  
-        <?php
-            // hash_hkdf
+        <?php            
             include __DIR__ . "/../libs/db.php";
             global $config;
             $carrinho = [];            
