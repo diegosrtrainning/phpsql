@@ -1,8 +1,11 @@
 <?php
 
+include __DIR__ . '/config.php';
 session_start();
 
 if(empty($_SESSION["nommeUsuario"])){
-    //header("Location: login.php");
+
+    global $config;
+    header("Location: ". $config["URL_PORTAL"] ."/admin");    
 }
 ?>

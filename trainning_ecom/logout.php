@@ -1,6 +1,7 @@
 <?php
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {         
+    include __DIR__ . '/libs/config.php';
 
     session_start();
     // Limpando variáveis de sessão
@@ -9,7 +10,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Destrindo a sessão 
     session_destroy();
 
-    header("Location: Login.php");
+    global $config;
+
+    header("Location: ". $config["URL_PORTAL"]);    
 }
 
 ?>

@@ -4,7 +4,7 @@
 ?>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <img class="mb-4 logo" src="../../media/logo2.png" alt="" width="80">
+    <img class="mb-4 logo" src="<?php global $config; echo $config["URL_PORTAL"] ."/" ?>media/logo2.png" alt="" width="80">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -42,7 +42,7 @@
             <span class="total-car badge badge-pill badge-danger">
                 <?php echo empty($_COOKIE["carrinho"]) ? 0 : count(json_decode($_COOKIE["carrinho"])); ?>
             </span>
-            <img  src="../../media/user.png">
+            <img  src="<?php global $config; echo $config["URL_PORTAL"] ."/" ?>media/user.png">
         </div>
     </div>
 </nav>

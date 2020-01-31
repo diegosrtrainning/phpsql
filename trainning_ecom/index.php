@@ -4,7 +4,7 @@
     
     if ($_SERVER["REQUEST_METHOD"] == "POST") {         
         $email = $_POST["inputEmail"];
-        $senha = $_POST["inputSenha"];
+        $senha = md5($_POST["inputSenha"]);
 
         try {
             $db = conectar();
@@ -25,7 +25,8 @@
 
             if(!empty($clientes)){                
                 session_start();
-                $_SESSION["nommeUsuario"] = $clientes[0]->nome;
+                $_SESSION["idCliente"] = $clientes[0]["id_cliente"];
+                $_SESSION["nomeCliente"] = $clientes[0]["nome"];
                 header("Location: vitrine.php");
                 exit;
             } else {
@@ -68,7 +69,9 @@
             </label>
         </div>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>        
-        <a href="admin">Sou funcionário</a>
+        <div class="links">
+            <a href="clientes">Não tenho cadastro</a> | <a href="admin">Sou funcionário</a>
+        </div>
         <p class="mt-5 mb-3 text-muted">&copy; 2020</p>
     </form>
 </body>

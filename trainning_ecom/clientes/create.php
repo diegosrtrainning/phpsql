@@ -9,12 +9,12 @@
         $cpf = $_POST["cpf"];
         $data_nascimento = $_POST["data_nascimento"];
         $email = $_POST["email"];
-        $senha = $_POST["senha"];
+        $senha = md5($_POST["senha"]);
         $ativo = 1;
         $confirmarSenha = $_POST["confirmarSenha"];
 
         $params = compact('nome', 'sobrenome', 'email', 'senha', 'ativo','cpf', 'data_nascimento');
-        //$params = [$nome, $sobrenome, $email, $senha, $ativo, $cpf, $data_nascimento];
+        //$params = [$nome, $sobrenome, $email, $senha, $ativo, $cpf, $data_nascimento]; (com ?,?,?,?,?,?,?)
         
         try {
             $db = conectar();

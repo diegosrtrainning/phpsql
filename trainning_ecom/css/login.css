@@ -42,3 +42,16 @@ body {
 .erro{
     color: red;
 }
+
+.links{
+  padding-top: 15px;;
+}
+
+.links a{
+  color: gray;
+  text-decoration: none;
+}
+
+.links a:hover{
+  color: blue;
+}

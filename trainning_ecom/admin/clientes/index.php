@@ -53,33 +53,51 @@
                 <th scope="col">#</th>
                 <th scope="col">Nome</th>
                 <th scope="col">Sobrenome</th>
+                <th scope="col">CPF</th>
+                <th scope="col">Data Nascimento</th>
+                <th scope="col">Ativo</th>
                 <th scope="col">Ações</th>
                 </tr>
             </thead>
             <tbody>
                     <?php
-                     //TODO Listar cliebtes
-                    //     $clientes = json_decode($clientesJson);                
 
-                    //     foreach ($clientes as $key => $cliente) {                                          
+                    include __DIR__ . "/../../libs/db.php";
 
-                    //         echo  "<tr>".
-                    //                     "<th scope='row'>$cliente->id</th>" .
-                    //                     "<td>$cliente->nome</td>".
-                    //                     "<td>$cliente->sobrenome</td>".
-                    //                     "<td>".
-                    //                         "<form style='display: inline; padding-right: 20px' action='excluir.php' method='post'>" .
-                    //                             "<input type='hidden' name='id' value='$cliente->id' />".
-                    //                             "<input type='submit' class='btn btn-danger' value='Deletar' />".
-                    //                         "</form>".                    
-                    //                     "</td>".
-                    //                 "</tr>";                    
-                    //     }                                                
-                    // 
-                    ?>                                            
+                    $db = conectar();
+                    $sql = "SELECT
+                                id_cliente,
+                                nome,
+                                sobrenome,
+                                data_nascimento,
+                                email,
+                                senha,
+                                ativo,
+                                cpf
+                            FROM
+                                trainning_ecom_oficial.cliente;
+                                WHERE ativo = 1";
+                    $clientes = read($db, $sql);                    
+                    
+                    foreach ($clientes as $key => $cliente) {
+                        echo  "<tr>".
+                                    "<td scope='row'>" . $cliente['id_cliente'] ."</td>" .
+                                    "<td>" . $cliente['nome'] ."</td>".
+                                    "<td>" . $cliente['sobrenome'] ."</td>".                                        
+                                    "<td>" . $cliente['cpf'] ."</td>".
+                                    "<td>" . $cliente['data_nascimento'] ."</td>".
+                                    "<td>" . ($cliente['ativo'] == 1 ? "Sim" : "Não") ."</td>".
+                                    "<td>".
+                                        "<form style='display: inline; padding-right: 20px' action='delete.php' method='post'>" .
+                                            "<input type='hidden' name='id' value='" . $cliente['id_cliente'] ."' />".
+                                            "<input type='submit' class='btn btn-danger' value='Deletar' />".
+                                        "</form>".                    
+                                    "</td>".
+                                "</tr>";
+                        }                    
+                    ?>
             </tbody>
-            </table>
-
+        </table>
     </div>    
 </body>
 

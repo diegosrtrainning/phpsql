@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.18, for Win64 (x86_64)
 --
--- Host: localhost    Database: trainning_ecom_new
+-- Host: localhost    Database: trainning_ecom_oficial
 -- ------------------------------------------------------
 -- Server version	8.0.18
 
@@ -51,11 +51,12 @@ CREATE TABLE `cliente` (
   `nome` varchar(100) NOT NULL,
   `sobrenome` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `email` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `senha` varchar(10) NOT NULL,
+  `senha` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `ativo` tinyint(1) NOT NULL DEFAULT '1',
   `cpf` varchar(15) NOT NULL,
+  `data_nascimento` date DEFAULT NULL,
   PRIMARY KEY (`id_cliente`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Clientes';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='Clientes';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -64,6 +65,7 @@ CREATE TABLE `cliente` (
 
 LOCK TABLES `cliente` WRITE;
 /*!40000 ALTER TABLE `cliente` DISABLE KEYS */;
+INSERT INTO `cliente` VALUES (1,'Anne','Caroline','anne@gmail.com','81dc9bdb52d04dc20036dbd8313ed055',1,'12312312311','2000-01-01');
 /*!40000 ALTER TABLE `cliente` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -337,10 +339,11 @@ CREATE TABLE `produto` (
   `valor` float DEFAULT NULL,
   `ativo` tinyint(1) DEFAULT NULL,
   `id_categoria` int(11) DEFAULT NULL,
+  `foto_vitrine` varchar(1000) DEFAULT NULL,
   PRIMARY KEY (`id_produto`),
   KEY `produto_fk` (`id_categoria`),
   CONSTRAINT `produto_fk` FOREIGN KEY (`id_categoria`) REFERENCES `categoria` (`id_categoria`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Tab de produtos comercializados.';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='Tab de produtos comercializados.';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -349,7 +352,35 @@ CREATE TABLE `produto` (
 
 LOCK TABLES `produto` WRITE;
 /*!40000 ALTER TABLE `produto` DISABLE KEYS */;
+INSERT INTO `produto` VALUES (1,'Notebook','Lorem',1999,1,1,'media/produtos/notebook.jpg');
 /*!40000 ALTER TABLE `produto` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `produto_foto`
+--
+
+DROP TABLE IF EXISTS `produto_foto`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `produto_foto` (
+  `id_produto_foto` int(11) NOT NULL AUTO_INCREMENT,
+  `descricao` varchar(100) NOT NULL,
+  `url` varchar(1000) NOT NULL,
+  `id_produto` int(11) NOT NULL,
+  PRIMARY KEY (`id_produto_foto`),
+  KEY `produto_foto_fk` (`id_produto`),
+  CONSTRAINT `produto_foto_fk` FOREIGN KEY (`id_produto`) REFERENCES `produto` (`id_produto`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `produto_foto`
+--
+
+LOCK TABLES `produto_foto` WRITE;
+/*!40000 ALTER TABLE `produto_foto` DISABLE KEYS */;
+/*!40000 ALTER TABLE `produto_foto` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -433,7 +464,7 @@ INSERT INTO `tipo_entrega` VALUES (1,'Mais econômica',6.5,4),(2,'Mais rápida',
 UNLOCK TABLES;
 
 --
--- Dumping routines for database 'trainning_ecom_new'
+-- Dumping routines for database 'trainning_ecom_oficial'
 --
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -445,4 +476,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-01-30 16:48:32
+-- Dump completed on 2020-01-31 16:59:12
