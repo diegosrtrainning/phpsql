@@ -1,25 +1,41 @@
 <?php
+    require __DIR__. '/libs/db.php';
     $erro = "";
     
     if ($_SERVER["REQUEST_METHOD"] == "POST") {         
         $email = $_POST["inputEmail"];
         $senha = $_POST["inputSenha"];
 
-        $clientesJson = file_get_contents(__DIR__."\\data\\clientes.json");
-        $clientes = json_decode($clientesJson);                
+        try {
+            $db = conectar();
 
-        $key = array_search($email, array_column($clientes, 'email'));
+            $sql = "select
+                        id_cliente,
+                        nome,
+                        sobrenome,
+                        email
+                    from
+                        trainning_ecom_oficial.cliente
+                    where
+                        email = '$email'
+                        and senha = '$senha'
+                        and ativo = 1";
+            
+            $clientes = read($db, $sql);
 
-        $cliente = $clientes[$key];
+            if(!empty($clientes)){                
+                session_start();
+                $_SESSION["nommeUsuario"] = $clientes[0]->nome;
+                header("Location: vitrine.php");
+                exit;
+            } else {
+                $erro = "Email e/ou senha inválido(s)";
+            }
 
-        if($cliente->senha == $senha) {
-            session_start();
-            $_SESSION["nommeUsuario"] = $cliente->nome;            
-            header("Location: vitrine.php");            
-            exit;
-        } else {
-            $erro = "Email e/ou senha inválido(s)";
-        }
+        } catch (\Throwable $th) {
+            //throw $th;
+        }        
+
     }
 ?>
 

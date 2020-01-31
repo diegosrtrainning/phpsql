@@ -1,31 +1,44 @@
 <?php
+    include __DIR__ . "/../libs/db.php";
+    
     if ($_SERVER["REQUEST_METHOD"] == "POST") {       
         $clientes = [];
         $id = $_POST["id"];
         $nome = $_POST["nome"];
         $sobrenome = $_POST["sobrenome"];
+        $cpf = $_POST["cpf"];
+        $data_nascimento = $_POST["data_nascimento"];
         $email = $_POST["email"];
         $senha = $_POST["senha"];
+        $ativo = 1;
         $confirmarSenha = $_POST["confirmarSenha"];
 
-        if($id == 0){
-            $id = rand(1, 10000);
-        }
+        $params = compact('nome', 'sobrenome', 'email', 'senha', 'ativo','cpf', 'data_nascimento');
+        //$params = [$nome, $sobrenome, $email, $senha, $ativo, $cpf, $data_nascimento];
+        
+        try {
+            $db = conectar();
+            
+            $sql = "insert
+            into
+                trainning_ecom_oficial.cliente (
+                nome,
+                sobrenome,
+                email,
+                senha,
+                ativo,
+                cpf,
+                data_nascimento)
+            values(:nome,:sobrenome,:email,:senha,:ativo,:cpf,:data_nascimento)";
+            
+            $id = create($db, $sql, $params);
 
-        $cliente = compact("id","nome", "sobrenome", "email", "senha");
-        $clientesJson = file_get_contents(__DIR__."\\data\\clientes.json");
-
-        if(!empty($clientesJson) && $clientesJson != "null"){
-            $clientes = json_decode($clientesJson);                
+        } catch (\Throwable $th) {
+            //throw $th;
         }
         
-        array_push($clientes, $cliente);
-        
-        $myfile = fopen(__DIR__."\\data\\clientes.json", "w");
-        fwrite($myfile, json_encode($clientes));                
-        fclose($myfile);
                                         
-        header("Location: /trainning/phpfoundation/bonus/bonus1/cadastro-endereco.php?id=$id");
+        header("Location: enderecos.php?idCliente=$id");
         exit;
     }
 ?>

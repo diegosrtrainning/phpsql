@@ -17,6 +17,7 @@
 <?php
 error_reporting(0);
 
+include __DIR__ . "/../libs/db.php";
 include __DIR__ . "/../libs/logs.php";
 
 $cep = $logradouro = $bairro = $cidade = $estado = "";
@@ -77,7 +78,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>      
         <div class="row ">
             <div class="col-2 ">
-                <form action="<?php $_SERVER["PHP_SELF"]?>" method="post">
+                <form action="create-endereco.php" method="post">
                     <div class="form-row align-items-end">                
                         <div class="col-8">
                             <label>CEP</label>

@@ -15,8 +15,8 @@
 <body class="text-center">
     
         <!-- TOPO DA PAGINA -->
-        <?php include __DIR__ . "/includes/topo.php"; ?>
-        <?php include __DIR__ . "/includes/vitrine/item.php"; ?>
+        <?php include __DIR__ . "/libs/topo.php"; ?>
+        <?php include __DIR__ . "/carrinho/item.php"; ?>
         
         <div id="container" class="container">
             <?php

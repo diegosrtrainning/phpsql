@@ -6,7 +6,7 @@ try
     $db = conectar();
 
     $sql= "SELECT * FROM categoria";
-    $categorias = listar($db, $sql);        
+    $categorias = read($db, $sql);        
     
     foreach($categorias as $categoria) {
         var_dump($categoria);

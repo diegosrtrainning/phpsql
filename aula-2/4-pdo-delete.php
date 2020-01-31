@@ -4,7 +4,7 @@ require 'db.php';
 try {
     $db = conectar();    
     $params = [
-        'id_categoria' => 7        
+        'id_categoria' => 1        
     ];
 
     $sql = "DELETE FROM categoria where id_categoria=:id_categoria";    

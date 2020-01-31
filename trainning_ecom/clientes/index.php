@@ -33,7 +33,7 @@
             <div class="row">
                 <!-- Dados Pessoais -->
                 <div class="col-6">
-                    <form method="post" action="adicionar.php" enctype="multipart/form-data">
+                    <form method="post" action="create.php" enctype="multipart/form-data">
                         <input id="id" name="id" value="<?php echo $id; ?>" type="hidden">            
                         <div class="row">
                             <div class="col-12 form-fields">
@@ -56,6 +56,12 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
+                                    <label for="data_nascimento" class="col-sm-4 col-form-label col-form-label-lg text-right">Data nascimento:</label>
+                                    <div class="col-sm-8">
+                                    <input type="text" class="form-control form-control-lg" id="data_nascimento" name="data_nascimento" placeholder="Digite a data de nascimento" maxlength="15" required>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
                                     <label for="email" class="col-sm-4 col-form-label col-form-label-lg text-right">Email:</label>
                                     <div class="col-sm-8">
                                     <input type="email" class="form-control form-control-lg" id="email" name="email" placeholder="Email" required>
@@ -72,7 +78,7 @@
                                     <div class="col-sm-8">
                                     <input type="password" class="form-control form-control-lg" id="confirmarSenha" name="confirmarSenha" placeholder="Confirmar senha" required>
                                     </div>
-                                </div>
+                                </div>                                
                             </div>
                         </div>
                         <div class="row justify-content-md-center form-buttons" >                                        
@@ -102,7 +108,7 @@
                         </div>
                         <div class="row justify-content-md-center form-buttons" >                                        
                             <div class="col-1">
-                                <input type="submit" class="btn btn-success" value="Salvar" />
+                                <input type="submit" class="btn btn-success" value="Salvar" <?php echo $disabled; ?> />
                             </div>
                         </div>                    
                     </form>

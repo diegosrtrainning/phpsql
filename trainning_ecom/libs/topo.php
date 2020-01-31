@@ -15,7 +15,7 @@
                 <a class="nav-link" href="vitrine.php">Home <span class="sr-only">(current)</span></a>
             </li>        
             <li class="nav-item">
-                <a class="nav-link" href="clientes.php">Clientes <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="clientes">Clientes <span class="sr-only">(current)</span></a>
             </li>        
         </ul>
         <form action="logout.php" method="post" class="form-inline my-2 my-lg-0">                        
