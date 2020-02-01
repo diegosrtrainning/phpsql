@@ -1,5 +1,6 @@
 <?php
     include __DIR__ . "/../libs/db.php";
+    include __DIR__ . "/../libs/utils/datetime.php";
     
     if ($_SERVER["REQUEST_METHOD"] == "POST") {       
         $clientes = [];
@@ -7,7 +8,7 @@
         $nome = $_POST["nome"];
         $sobrenome = $_POST["sobrenome"];
         $cpf = $_POST["cpf"];
-        $data_nascimento = $_POST["data_nascimento"];
+        $data_nascimento = dateParse($_POST["data_nascimento"]);
         $email = $_POST["email"];
         $senha = md5($_POST["senha"]);
         $ativo = 1;
@@ -38,7 +39,7 @@
         }
         
                                         
-        header("Location: enderecos.php?idCliente=$id");
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
         exit;
     }
 ?>

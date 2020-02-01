@@ -13,10 +13,7 @@
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
             <li class="nav-item active">
                 <a class="nav-link" href="<?php global $config; echo $config["URL_PORTAL"] ."/" ?>vitrine.php">Home <span class="sr-only">(current)</span></a>
-            </li>        
-            <li class="nav-item">
-                <a class="nav-link" href="<?php global $config; echo $config["URL_PORTAL"] ."/" ?>clientes">Clientes <span class="sr-only">(current)</span></a>
-            </li>        
+            </li>                    
         </ul>
         <form action="<?php global $config; echo $config["URL_PORTAL"] ."/" ?>logout.php" method="post" class="form-inline my-2 my-lg-0">                                    
         <?php 
@@ -25,7 +22,8 @@
                         echo "<a class='lnk-entrar' href='". $config['URL_PORTAL'] ."'>Entrar</a>";                         
                     }
                     else{
-                        echo "<span class='nome-cliente'>Olá " . $_SESSION["nomeCliente"] . "</span>".
+                        global $config;
+                        echo "<span class='nome-cliente'>Olá <a href='" . $config["URL_PORTAL"] . "/clientes'>". $_SESSION["nomeCliente"] . "</a></span>".
                         "<button class='btn btn-logout my-2 my-sm-0' type='submit'>[Sair]</button>";
                     }
                 ?>                                    

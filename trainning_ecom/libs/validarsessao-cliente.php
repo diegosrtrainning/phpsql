@@ -1,7 +1,11 @@
 <?php
 include __DIR__ . '/config.php';
 
-session_start();
+if(!isset($_COOKIE["PHPSESSID"]))
+{
+    session_start();
+}
+
 if(empty($_SESSION["nomeCliente"])){
     global $config;
 

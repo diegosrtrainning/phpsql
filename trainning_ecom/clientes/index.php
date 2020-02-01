@@ -1,9 +1,43 @@
 <?php
+    include __DIR__ .'/../libs/db.php';
+    global $config;
     $id = 0;
+    $nome = $sobrenome = $cpf = $data_nascimento = $email = "";
+    $foto = "../media/user.png";
     $disabled = 'disabled';
-    if(!empty($_GET["id"])){
-        $id =  $_GET["id"];
-        $disabled = '';
+    session_start();
+    error_reporting(0);
+
+    if(!empty($_SESSION["idCliente"])){
+        $id =  $_SESSION["idCliente"];
+
+        $db = conectar();
+
+        $sql = "SELECT
+                    id_cliente,
+                    nome,
+                    sobrenome,
+                    data_nascimento,
+                    email,
+                    senha,
+                    ativo,
+                    cpf,
+                    foto
+                FROM
+                    trainning_ecom_oficial.cliente;
+                    WHERE id_cliente = $id";
+        
+        $clientes = read($db, $sql);                    
+        
+        if(isset($clientes)){
+            $nome = $clientes[0]["nome"];
+            $sobrenome = $clientes[0]["sobrenome"];
+            $cpf = $clientes[0]["cpf"];
+            $data_nascimento = $clientes[0]["data_nascimento"];
+            $email = $clientes[0]["email"];
+            $foto = $config["URL_PORTAL"] . "/" . $clientes[0]["foto"];
+            $disabled = '';
+        }        
     }
 ?>
 <!doctype html>
@@ -40,31 +74,31 @@
                                 <div class="form-group row">
                                     <label for="nome" class="col-sm-4 col-form-label col-form-label-lg text-right">Nome:</label>
                                     <div class="col-sm-8">
-                                    <input type="text" class="form-control form-control-lg" id="nome" name="nome" placeholder="Digite o nome" required>
+                                    <input type="text" class="form-control form-control-lg" id="nome" name="nome" placeholder="Digite o nome" value="<?php echo $nome; ?>" required>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="sobrenome" class="col-sm-4 col-form-label col-form-label-lg text-right">Sobrenome:</label>
                                     <div class="col-sm-8">
-                                    <input type="text" class="form-control form-control-lg" id="sobrenome" name="sobrenome" placeholder="Sobrenome" required>
+                                    <input type="text" class="form-control form-control-lg" id="sobrenome" name="sobrenome" placeholder="Sobrenome" " value="<?php echo $sobrenome; ?>" required>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="cpf" class="col-sm-4 col-form-label col-form-label-lg text-right">CPF:</label>
                                     <div class="col-sm-8">
-                                    <input type="text" class="form-control form-control-lg" id="cpf" name="cpf" placeholder="Digite o CPF" maxlength="15" required>
+                                    <input type="text" class="form-control form-control-lg" id="cpf" name="cpf" placeholder="Digite o CPF" maxlength="15" value="<?php echo $cpf; ?>" required>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="data_nascimento" class="col-sm-4 col-form-label col-form-label-lg text-right">Data nascimento:</label>
                                     <div class="col-sm-8">
-                                    <input type="text" class="form-control form-control-lg" id="data_nascimento" name="data_nascimento" placeholder="Digite a data de nascimento" maxlength="15" required>
+                                    <input type="text" class="form-control form-control-lg" id="data_nascimento" name="data_nascimento" placeholder="Digite a data de nascimento" maxlength="15" value="<?php echo $data_nascimento; ?>" required>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="email" class="col-sm-4 col-form-label col-form-label-lg text-right">Email:</label>
                                     <div class="col-sm-8">
-                                    <input type="email" class="form-control form-control-lg" id="email" name="email" placeholder="Email" required>
+                                    <input type="email" class="form-control form-control-lg" id="email" name="email" placeholder="Email" value="<?php echo $email; ?>" required>
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -91,11 +125,11 @@
 
                 <!-- Imagem -->
                 <div class="col-6 text-center">                
-                    <form method="post" action="salvar-foto.php" enctype="multipart/form-data">
+                    <form method="post" action="create-foto.php" enctype="multipart/form-data">
                         <input id="id" name="id" value="<?php echo $id; ?>" type="hidden">            
                         <div class="row">
                             <div class="col-12">
-                                <img class="img-user" src="../media/user.png" alt="">
+                                <img class="img-user" src="<?php echo $foto; ?>" alt="">
                             </div>
                         </div>
                         <div class="row justify-content-md-center">
