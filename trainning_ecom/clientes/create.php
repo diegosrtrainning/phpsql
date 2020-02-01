@@ -34,12 +34,14 @@
             
             $id = create($db, $sql, $params);
 
+            $_SESSION["idCliente"] = $id;
+            $_SESSION["nomeCliente"] = $nome;
+
+            header('Location: ' . $_SERVER['HTTP_REFERER']);
+            exit;
+
         } catch (\Throwable $th) {
             //throw $th;
-        }
-        
-                                        
-        header('Location: ' . $_SERVER['HTTP_REFERER']);
-        exit;
+        }                                                
     }
 ?>
