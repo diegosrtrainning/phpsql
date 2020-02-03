@@ -4,7 +4,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $carrinho = [];
     if(!empty($_COOKIE["carrinho"]))
     {
-        $carrinho = json_decode($_COOKIE["carrinho"]);
+        $carrinho = json_decode($_COOKIE["carrinho"], true);
     } 
         
     $idFind = array_search($idProduto, array_column($carrinho, 'id_produto'));

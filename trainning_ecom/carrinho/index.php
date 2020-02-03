@@ -17,24 +17,26 @@
     <?php include __DIR__ . "/../libs/topo.php"; ?>
     <div id="container" class="container">                                            
         <div class="row title-section">
-            <div class="col-12">
-                Meu Carrinho
+            <div class="col-12">            
+                <h1>Meu Carrinho</h1>
             </div>            
         </div>                  
         <?php            
             include __DIR__ . "/../libs/db.php";
+            include __DIR__ . "/../libs/forms/select.php";
             global $config;
             $carrinho = [];            
+            $totalCarrinho = 0;
 
             if(!empty($_COOKIE["carrinho"]))
             {
-                $carrinho = json_decode($_COOKIE["carrinho"]);
+                $carrinho = json_decode($_COOKIE["carrinho"], true);
             }             
 
             $produtosArr = [];
 
             foreach ($carrinho as $key => $produto) {                
-                array_push($produtosArr, $produto->id_produto);
+                array_push($produtosArr, $produto['id_produto']);
             }                         
             
             if(count($carrinho) > 0)
@@ -57,7 +59,7 @@
                             p.ID_PRODUTO IN ($produtos);";
                 
                 $produtos_carrinho = read($db, $sql);                                    
-
+                
                 echo  "<div class='row'>".
                 "<div class='col-9'>
                     <div class='row itens-titulo'>
@@ -68,8 +70,10 @@
                         <div class='col-2'>Subtotal</div>
                     </div>";
                 foreach ($produtos_carrinho as $key => $produto) {
-                    $idFind = array_search($produto->id_produto, array_column($carrinho, 'id_produto'));        
+                    $idFind = array_search($produto['id_produto'], array_column($carrinho, 'id_produto'));        
                     $itemCarrinho = $carrinho[$idFind];                    
+
+                    $totalCarrinho += ($produto['valor'] * $itemCarrinho['quantidade']);
 
                     echo  "<div class='row item-container'>
                                 <div class='col-2'>
@@ -91,50 +95,57 @@
                                 <div class='col-2'>
                                     <form method='post' action='recalcular.php'>
                                         <input type='hidden' name='id' value='" . $produto['id_produto'] . "' />
-                                        <p> <input  class='inp-qtde' type='number' name='quantidade' min='1' max='100' value='". $itemCarrinho->quantidade ."' /></p>
+                                        <p> <input  class='inp-qtde' type='number' name='quantidade' min='1' max='100' value='". $itemCarrinho['quantidade'] ."' /></p>
                                         <p>
                                             <input type='submit' class='btn btn-primary btn-add-carrinho' value='Recalcular' />
                                         </p>
                                     </form>
                                 </div>
                                 <div class='col-2'>
-                                    <p> R$ " . ($produto['valor'] * $itemCarrinho->quantidade) . "</p>
+                                    <p> R$ " . ($produto['valor'] * $itemCarrinho['quantidade']) . "</p>
                                 </div>                                
                             </div>";
                 }
                 echo "</div>";
 
+                $sql = "SELECT
+                            p.id_tipo_entrega as id,
+                            concat(p.nome, ' (R$ ',  p.preco_frete, ') - ',  p.prazo_entrega, ' dias úteis') AS 'descricao'
+                        FROM
+                            trainning_ecom_oficial.tipo_entrega p";
+        
+                $tipos_entrega = read($db, $sql);
+
+                $sql = "SELECT
+                            p.ID_FORMA_PAGAMENTO as id,
+                            CASE p.PARCELAS 
+                                WHEN 1 THEN 
+                                    concat(p.nome, ' R$ $totalCarrinho (à vista)')  
+                                ELSE concat(p.nome,' ', p.PARCELAS, ' X (R$ ',  ROUND((". $totalCarrinho." / p.PARCELAS), 2), ')') 
+                            END AS 'descricao'
+                        FROM
+                            trainning_ecom_oficial.FORMA_PAGAMENTO P";        
+
+                $formas_pagamento = read($db, $sql);
+
+
                 echo "<div class='col-3 pnl-entrega'>
                     <div class='row'>
                         <div class='col-12'>
-                            <div class='form-group'>                        
-                                <label for='meio_entrega'>ENTREGA</label>  
-                                <select class='form-control' id='meio_entrega' name='meio-entrega'>
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
-                                </select>
-                            </div>
+                            ". criarSelect('meio_entrega', 'ENTREGA', $tipos_entrega) ."
                         </div>
                     </div>
                     <div class='row'>
                         <div class='col-12'>
-                            <div class='form-group'>                        
-                                <label for='meio_pagamento'>FORMA DE PAGAMENTO</label>
-                                <select class='form-control' id='meio_pagamento' name='meio_pagamento'>
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
-                                </select>
-                            </div>
+                        ". criarSelect('meio_entrega', 'FORMA DE PAGAMENTO', $formas_pagamento) ."
                         </div>
                     </div>
                     <div class='row'>
                         <div class='col-12'>
+                            <hr>
+                            <p><span class='sp-total'>TOTAL PEDIDO: R$ </span><span class='sp-total-valor'>$totalCarrinho</span><p>
+                        </div>
+                        <div class='col-12'>                            
                             <button type='button' class='btn btn-primary btn-block'>Finalizar Pedido</button>
                         </div>
                     </div>

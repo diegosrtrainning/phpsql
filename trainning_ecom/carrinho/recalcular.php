@@ -7,7 +7,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if(!empty($_COOKIE["carrinho"]))
     {
-        $carrinho = json_decode($_COOKIE["carrinho"]);
+        $carrinho = json_decode($_COOKIE["carrinho"], true);
     } else {
         header('Location: ' . $_SERVER['HTTP_REFERER']);
         exit;
