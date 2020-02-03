@@ -44,13 +44,14 @@
                 if(!empty($_COOKIE["carrinho"]))
                 {
                     $carrinho = json_decode($_COOKIE["carrinho"]);
-                }                                     
+                }                                                     
 
                 foreach ($produtos as $key => $produto) {                      
                     if($key%3 == 0){
                         echo '</div><div class="row card-container">';
                     }
-                    $estaNoCarrinho = array_search($produto["id_produto"],$carrinho);                      
+                    
+                    $estaNoCarrinho = array_search($produto["id_produto"], array_column($carrinho, 'id_produto'));
                     $estaNoCarrinho = ($estaNoCarrinho !== false);
 
                     echo criarItem($produto, $estaNoCarrinho);

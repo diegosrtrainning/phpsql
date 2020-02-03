@@ -25,15 +25,22 @@
             include __DIR__ . "/../libs/db.php";
             global $config;
             $carrinho = [];            
+
             if(!empty($_COOKIE["carrinho"]))
             {
                 $carrinho = json_decode($_COOKIE["carrinho"]);
-            } 
+            }             
 
+            $produtosArr = [];
+
+            foreach ($carrinho as $key => $produto) {                
+                array_push($produtosArr, $produto->id_produto);
+            }                         
+            
             if(count($carrinho) > 0)
             {
-                $produtos = implode(',', $carrinho);
-                    
+                $produtos = implode(',', $produtosArr);
+                
                 $db = conectar();
                 $sql = "SELECT
                             p.id_produto,
@@ -49,21 +56,92 @@
                         WHERE 
                             p.ID_PRODUTO IN ($produtos);";
                 
-                $produtos_carrinho = read($db, $sql);                    
+                $produtos_carrinho = read($db, $sql);                                    
 
+                echo  "<div class='row'>".
+                "<div class='col-9'>
+                    <div class='row itens-titulo'>
+                        <div class='col-2'>Foto</div>
+                        <div class='col-3'>Item</div>
+                        <div class='col-2'>Preço</div>
+                        <div class='col-2'>Qtde.</div>
+                        <div class='col-2'>Subtotal</div>
+                    </div>";
                 foreach ($produtos_carrinho as $key => $produto) {
-                    echo  "<div class='row'>".
-                                "<div class='col-2'>".
-                                    "<img class='img-carrinho' src='" . $config["URL_PORTAL"] . "/" . $produto['foto_vitrine'] ."'/>".
-                                "</div>".            
-                                "<div class='col-4 produto-carrinho-container'>".
-                                "<h2>" . $produto['nome'] . "</h2>" .
-                                "<p>" . $produto['descricao'] . "</p>" .
-                                "<p> R$ " . $produto['valor'] . "</p>" .
-                                "<p> <input type='number' name='quantidade' min='1' max='100' value='1' /></p>" .
-                                "</div>".
-                            "</div>";
+                    $idFind = array_search($produto->id_produto, array_column($carrinho, 'id_produto'));        
+                    $itemCarrinho = $carrinho[$idFind];                    
+
+                    echo  "<div class='row item-container'>
+                                <div class='col-2'>
+                                    <img class='img-carrinho' src='" . $config["URL_PORTAL"] . "/" . $produto['foto_vitrine'] ."'/>
+                                    <form method='post' action='delete.php'>
+                                        <input type='hidden' name='id' value='" . $produto['id_produto'] . "' />                                        
+                                        <p>
+                                            <input type='submit' class='btn btn-danger btn-rmv-carrinho' value='Remover' />
+                                        </p>
+                                    </form>
+                                </div>
+                                <div class='col-3'>
+                                    <p class='p-desc-item'>" . $produto['nome'] . "<br>" .
+                                    $produto['descricao'] . "</p>
+                                </div>
+                                <div class='col-2'>
+                                    <p> R$ " . $produto['valor'] . "</p>
+                                </div>
+                                <div class='col-2'>
+                                    <form method='post' action='recalcular.php'>
+                                        <input type='hidden' name='id' value='" . $produto['id_produto'] . "' />
+                                        <p> <input  class='inp-qtde' type='number' name='quantidade' min='1' max='100' value='". $itemCarrinho->quantidade ."' /></p>
+                                        <p>
+                                            <input type='submit' class='btn btn-primary btn-add-carrinho' value='Recalcular' />
+                                        </p>
+                                    </form>
+                                </div>
+                                <div class='col-2'>
+                                    <p> R$ " . ($produto['valor'] * $itemCarrinho->quantidade) . "</p>
+                                </div>                                
+                            </div>";
                 }
+                echo "</div>";
+
+                echo "<div class='col-3 pnl-entrega'>
+                    <div class='row'>
+                        <div class='col-12'>
+                            <div class='form-group'>                        
+                                <label for='meio_entrega'>ENTREGA</label>  
+                                <select class='form-control' id='meio_entrega' name='meio-entrega'>
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class='row'>
+                        <div class='col-12'>
+                            <div class='form-group'>                        
+                                <label for='meio_pagamento'>FORMA DE PAGAMENTO</label>
+                                <select class='form-control' id='meio_pagamento' name='meio_pagamento'>
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class='row'>
+                        <div class='col-12'>
+                            <button type='button' class='btn btn-primary btn-block'>Finalizar Pedido</button>
+                        </div>
+                    </div>
+                </div>";
+                echo "</div>";
+
+
             } else {
                 echo "Seu carrinho está vazio :(";
             }

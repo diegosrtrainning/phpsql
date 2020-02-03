@@ -1,8 +1,42 @@
 .img-carrinho{
     border-right:  1px solid lightgray;
-    max-width: 200px;
+    max-width: 100px;
 }
 
 .produto-carrinho-container{
     padding-left: 45px;
+}
+
+.pnl-entrega{
+    border: 1px solid gray;
+    background-color: #eae8e8;
+    padding: 10px;
+}
+
+.inp-qtde{
+    width: 45px;
+}
+
+.p-desc-item{
+    font-size: 9pt;
+}
+
+.item-container{
+    margin-bottom: 40px;
+}
+
+.itens-titulo{
+    font-weight: 600;
+}
+
+.btn-add-carrinho{
+    font-size: 7pt;
+    text-transform: uppercase;
+    padding: 4px;
+}
+
+.btn-rmv-carrinho{
+    font-size: 7pt;
+    text-transform: uppercase;
+    padding: 4px;
 }
