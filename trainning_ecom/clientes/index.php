@@ -27,15 +27,15 @@
                     trainning_ecom_oficial.cliente;
                     WHERE id_cliente = $id";
         
-        $clientes = read($db, $sql);                    
+        $enderecos = read($db, $sql);                    
         
-        if(isset($clientes)){
-            $nome = $clientes[0]["nome"];
-            $sobrenome = $clientes[0]["sobrenome"];
-            $cpf = $clientes[0]["cpf"];
-            $data_nascimento = $clientes[0]["data_nascimento"];
-            $email = $clientes[0]["email"];
-            $foto = $config["URL_PORTAL"] . "/" . $clientes[0]["foto"];
+        if(isset($enderecos)){
+            $nome = $enderecos[0]["nome"];
+            $sobrenome = $enderecos[0]["sobrenome"];
+            $cpf = $enderecos[0]["cpf"];
+            $data_nascimento = $enderecos[0]["data_nascimento"];
+            $email = $enderecos[0]["email"];
+            $foto = $config["URL_PORTAL"] . "/" . $enderecos[0]["foto"];
             $disabled = '';
         }        
     }
@@ -60,7 +60,7 @@
     <div id="container" class="container">                            
         <div class="row">
             <div class="col-12">
-                Cadasto 1/3
+                Dados Pessoais
             </div>
         </div>      
         
@@ -120,7 +120,56 @@
                                 <input type="submit" class="btn btn-success" value="Salvar" />
                             </div>
                         </div>                            
-                    </form>                    
+                    </form>     
+                    <div class="row title-section">
+                        <div class="col-11">
+                            Endereços
+                        </div>            
+                        <div class="col-1">
+                            <a href="enderecos.php" class="btn btn-success">Novo</a>
+                        </div>            
+                    </div>          
+                    <div class="row">
+                        <div class="col-12">                    
+                            <table class="table">
+                                <thead class="thead-dark">
+                                    <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Endereço</th>                                    
+                                    <th scope="col">Ações</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                        <?php                                        
+
+                                        $db = conectar();
+                                        $sql = "SELECT                                                    
+                                                    ce.id_cliente_endereco AS 'id',
+                                                    concat(ce.logradouro, ', ', ce.NUMERO, case ifnull(ce.COMPLEMENTO, '') when '' then '' else concat(' - ', ce.COMPLEMENTO) end, ' - ', ce.CIDADE, '-', ce.ESTADO) AS 'endereco'
+                                                FROM
+                                                    trainning_ecom_oficial.CLIENTE_ENDERECO ce
+                                                    WHERE ID_CLIENTE = " . $_SESSION["idCliente"];
+
+                                        $enderecos = read($db, $sql);                    
+                                        
+                                        foreach ($enderecos as $key => $endereco) {
+                                            echo  "<tr>".
+                                                        "<td scope='row'>" . $endereco['id'] ."</td>" .
+                                                        "<td>" . $endereco['endereco'] ."</td>".                                                        
+                                                        "<td>".
+                                                            "<a class='btn btn-primary btn-grid' href='enderecos.php?id=". $endereco['id'] ."'>Editar</a>&nbsp;&nbsp;".
+                                                            "<form style='display: inline; padding-right: 20px' action='delete-endereco.php' method='post'>" .
+                                                                "<input type='hidden' name='id' value='" . $endereco['id'] ."' />".
+                                                                "<input type='submit' class='btn btn-danger btn-grid' value='Deletar' />".
+                                                            "</form>".                    
+                                                        "</td>".
+                                                    "</tr>";
+                                            }
+                                        ?>
+                                </tbody>
+                            </table>
+                        </div>                       
+                    </div>
                 </div>
 
                 <!-- Imagem -->

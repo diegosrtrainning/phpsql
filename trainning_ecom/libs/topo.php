@@ -1,5 +1,4 @@
-<?php    
-    include __DIR__ . "/validarsessao-cliente.php";    
+<?php        
     error_reporting(0);    
 ?>
 
@@ -17,7 +16,9 @@
         </ul>
         <form action="<?php global $config; echo $config["URL_PORTAL"] ."/" ?>logout.php" method="post" class="form-inline my-2 my-lg-0">                                    
         <?php 
+                    include __DIR__ . '/config.php';
                     global $config; 
+                    if(!isset($_SESSION)){session_start();}                    
                     if(empty($_SESSION["nomeCliente"])){
                         echo "<a class='lnk-entrar' href='". $config['URL_PORTAL'] ."'>Entrar</a>";                         
                     }

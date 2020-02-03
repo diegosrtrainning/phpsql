@@ -1,55 +1,73 @@
 <?php
-    $idEnd = $idCliente = 0;
+    error_reporting(0);
+
+    include __DIR__ . "/../libs/db.php";
+    include __DIR__ . "/../libs/logs.php";
+
+    $id = $idCliente = 0;
     $msgSucesso = $msgErro = "";
     
-    if(!empty($_GET["idEnd"])){
-        $idEnd =  $_GET["idEnd"];
-    } else {
-        $idCliente = $_GET["idCliente"];
-    }
-    
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {         
-        // TODO: SALVAR ENDEREÇO
-        // TODO: ALTERAR ENDEREÇO
-    }
-?>
+    $cep = $logradouro = $numero = $complemento = $bairro = $cidade = $estado = "";
 
-<?php
-error_reporting(0);
+    if(!empty($_GET["id"])){
+        $id =  $_GET["id"];
 
-include __DIR__ . "/../libs/db.php";
-include __DIR__ . "/../libs/logs.php";
+        $sql = "SELECT
+            ce.id_cliente_endereco AS 'id',
+            ce.cep, 
+            ce.logradouro,
+            ce.numero, 
+            ifnull(ce.complemento, '') AS complemento, 
+            ce.bairro,
+            ce.cidade,
+            ce.estado
+        FROM
+            trainning_ecom_oficial.CLIENTE_ENDERECO ce
+            WHERE ID_CLIENTE_ENDERECO = " . $id;
 
-$cep = $logradouro = $bairro = $cidade = $estado = "";
+        $db = conectar();
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") { 
+        $endereco = read($db, $sql);
 
-    if(!empty($_POST["cep"])){
-        $cep = $_POST["cep"];
-        $urlViaCEP = "https://viacep.com.br/ws/$cep/json/";        
+        if(isset($endereco)){
 
-        try{
-            $context = stream_context_create(array(
-                'http' => array('ignore_errors' => true),
-            ));
+            $cep = $endereco[0]["cep"];
+            $logradouro = $endereco[0]["logradouro"];
+            $numero = $endereco[0]["numero"];
+            $complemento = $endereco[0]["complemento"];
+            $cidade = $endereco[0]["cidade"];
+            $estado = $endereco[0]["estado"];
+        }
+    } 
 
-            $response = file_get_contents($urlViaCEP, false, $context);    
-            $response = json_decode($response);
+    if ($_SERVER["REQUEST_METHOD"] == "POST") { 
 
-            if(empty($response)){
-                throw new Exception("CEP $cep não localizado");
-            }else {
-                $logradouro = $response->logradouro;
-                $bairro = $response->bairro;
-                $cidade = $response->localidade;
-                $estado = $response->uf;        
+        if(!empty($_POST["cep"])){
+            $cep = $_POST["cep"];
+            $urlViaCEP = "https://viacep.com.br/ws/$cep/json/";        
+
+            try{
+                $context = stream_context_create(array(
+                    'http' => array('ignore_errors' => true),
+                ));
+
+                $response = file_get_contents($urlViaCEP, false, $context);    
+                $response = json_decode($response);
+
+                if(empty($response)){
+                    throw new Exception("CEP $cep não localizado");
+                }else {
+                    $logradouro = $response->logradouro;
+                    $bairro = $response->bairro;
+                    $cidade = $response->localidade;
+                    $estado = $response->uf;        
+                }
+                                        
+            } catch (Exception $e) {
+                erro($e);
             }
-                                    
-        } catch (Exception $e) {
-            erro($e);
         }
     }
-}
  
 ?>
 <!doctype html>
@@ -73,12 +91,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div id="container" class="container">                            
         <div class="row">
             <div class="col-12">
-                Cadasto 2/3
+                <h1>Cadastro de endereço</h1>
             </div>
         </div>      
         <div class="row ">
             <div class="col-2 ">
-                <form action="create-endereco.php" method="post">
+                <form action="<?php $_SERVER["PHP_SELF"]?>" method="post">
                     <div class="form-row align-items-end">                
                         <div class="col-8">
                             <label>CEP</label>
@@ -91,10 +109,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </form>
             </div>
             <div class="col-10">
-                <form method="post" action="adicionar-cep.php"  enctype="multipart/form-data">            
-                    <input id="idCliente" name="idCliente" value="<?php echo $idCliente; ?>" type="hidden">
-                    <input id="idEnd" name="idEnd" value="<?php echo $idEnd; ?>" type="hidden">
-                    
+                <form method="post" action="create-endereco.php"  enctype="multipart/form-data">
+                    <input id="id" name="id" value="<?php echo $id; ?>" type="hidden">                    
                     <input type="hidden" name="cep" value="<?php echo $cep;?>">
                     <!-- Endereço -->
                     <div class="form-row align-items-end">                
@@ -104,13 +120,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         </div>
                         <div class="col-1">
                             <label>Número</label>
-                            <input type="text" name="numero" class="form-control" placeholder="Numero">
+                            <input type="text" name="numero" class="form-control" placeholder="Numero" value="<?php echo $numero;?>">
                         </div>
-                        <div class="col-3">
+                        <div class="col-2">
                             <label>Complemento</label>
-                            <input type="text" name="complemento" class="form-control" placeholder="Complemento">
+                            <input type="text" name="complemento" class="form-control" placeholder="Complemento" value="<?php echo $complemento;?>">
                         </div>
-                        <div class="col-3">
+                        <div class="col-2">
+                            <label>Bairro</label>
+                            <input type="text" name="bairro" class="form-control" placeholder="Bairro" value="<?php echo $bairro;?>">
+                        </div>
+                        <div class="col-2">
                             <label>Cidade</label>
                             <input type="text" name="cidade" class="form-control" placeholder="Cidade" value="<?php echo $cidade; ?>" readonly>
                         </div>
@@ -121,7 +141,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </div>
                     <div class="row justify-content-md-center form-buttons" >            
                         <div class="col-2">
-                            <a href="<?php echo ($_SERVER['HTTP_REFERER'] ?? "#"); ?>" class="btn btn-danger" >Voltar</a>
+                            <a href="<?php echo $config["URL_PORTAL"] . "/clientes"; ?>" class="btn btn-danger" >Voltar</a>
                         </div>
                         <div class="col-2">
                             <input type="submit" class="btn btn-success" value="Salvar" />
