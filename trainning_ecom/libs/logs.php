@@ -1,7 +1,7 @@
 <?php
 function erro(Exception $e) {
     
-    session_start();
+    if(!isset($_SESSION)){session_start();}
             
     $arquivo = "erro_" .date("Y-m-d") . ".txt";
     $myfile = __DIR__."/logs/". $arquivo;
@@ -11,7 +11,7 @@ function erro(Exception $e) {
     $templateLog = "[%1\$s] => %2\$s\nArquivo: %3\$s\nLinha: %4\$d\nErro: %5\$s\n";
     $erro = sprintf($templateLog, 
                     $data, 
-                    $_SESSION["nommeUsuario"] ?? "", 
+                    $_SESSION["nomeCliente"] ?? "", 
                     $e->getFile(), 
                     $e->getLine(), 
                     $e->getMessage());
