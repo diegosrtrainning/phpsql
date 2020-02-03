@@ -114,7 +114,7 @@
                         FROM
                             trainning_ecom_oficial.tipo_entrega p";
         
-                $tipos_entrega = read($db, $sql);
+                $tipos_entrega = read($db, $sql);                
 
                 $sql = "SELECT
                             p.ID_FORMA_PAGAMENTO as id,
@@ -128,28 +128,28 @@
 
                 $formas_pagamento = read($db, $sql);
 
-
                 echo "<div class='col-3 pnl-entrega'>
-                    <div class='row'>
-                        <div class='col-12'>
-                            ". criarSelect('meio_entrega', 'ENTREGA', $tipos_entrega) ."
+                <form action='" . $config["URL_PORTAL"] . "/pedidos/finalizar.php' method='get'>  
+                        <div class='row'>
+                            <div class='col-12'>
+                                ". criarSelect('meio_entrega', 'ENTREGA', $tipos_entrega) ."
+                            </div>
                         </div>
-                    </div>
-                    <div class='row'>
-                        <div class='col-12'>
-                        ". criarSelect('meio_entrega', 'FORMA DE PAGAMENTO', $formas_pagamento) ."
+                        <div class='row'>
+                            <div class='col-12'>
+                            ". criarSelect('forma_pagamento', 'FORMA DE PAGAMENTO', $formas_pagamento) ."
+                            </div>
                         </div>
-                    </div>
-                    <div class='row'>
-                        <div class='col-12'>
-                            <hr>
-                            <p><span class='sp-total'>TOTAL PEDIDO: R$ </span><span class='sp-total-valor'>$totalCarrinho</span><p>
+                        <div class='row'>
+                            <div class='col-12'>
+                                <hr>
+                                <p><span class='sp-total'>TOTAL PEDIDO: R$ </span><span class='sp-total-valor'>$totalCarrinho</span><p>
+                            </div>
+                            <div class='col-12'>                            
+                                <input type='submit' class='btn btn-primary btn-block' value='Finalizar Pedido' />
+                            </div>
                         </div>
-                        <div class='col-12'>                            
-                            <button type='button' class='btn btn-primary btn-block'>Finalizar Pedido</button>
-                        </div>
-                    </div>
-                </div>";
+                    </div></form>";
                 echo "</div>";
 
 

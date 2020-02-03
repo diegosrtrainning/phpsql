@@ -40,3 +40,9 @@
     text-transform: uppercase;
     padding: 4px;
 }
+
+.pnl-endereco{
+    border: 1px solid gray;
+    background-color: #eae8e8;
+    padding: 8px;
+}

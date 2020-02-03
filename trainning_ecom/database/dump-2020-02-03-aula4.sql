@@ -55,8 +55,9 @@ CREATE TABLE `cliente` (
   `ativo` tinyint(1) NOT NULL DEFAULT '1',
   `cpf` varchar(15) NOT NULL,
   `data_nascimento` date DEFAULT NULL,
+  `foto` varchar(1000) DEFAULT NULL,
   PRIMARY KEY (`id_cliente`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='Clientes';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='Clientes';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -65,7 +66,7 @@ CREATE TABLE `cliente` (
 
 LOCK TABLES `cliente` WRITE;
 /*!40000 ALTER TABLE `cliente` DISABLE KEYS */;
-INSERT INTO `cliente` VALUES (1,'Anne','Caroline','anne@gmail.com','81dc9bdb52d04dc20036dbd8313ed055',1,'12312312311','2000-01-01');
+INSERT INTO `cliente` VALUES (1,'Anne','Caroline','anne@gmail.com','81dc9bdb52d04dc20036dbd8313ed055',1,'12312312311','2000-01-01','clientes/media/dulce.png');
 /*!40000 ALTER TABLE `cliente` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -113,10 +114,12 @@ CREATE TABLE `cliente_endereco` (
   `cidade` varchar(100) NOT NULL,
   `estado` varchar(10) NOT NULL,
   `id_cliente` int(11) NOT NULL,
+  `cep` varchar(10) NOT NULL,
+  `bairro` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id_cliente_endereco`),
   KEY `cliente_endereco_fk` (`id_cliente`),
   CONSTRAINT `cliente_endereco_fk` FOREIGN KEY (`id_cliente`) REFERENCES `cliente` (`id_cliente`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -125,6 +128,7 @@ CREATE TABLE `cliente_endereco` (
 
 LOCK TABLES `cliente_endereco` WRITE;
 /*!40000 ALTER TABLE `cliente_endereco` DISABLE KEYS */;
+INSERT INTO `cliente_endereco` VALUES (2,'Rua Felício Pereira','123','ggf','São Paulo','SP',1,'03463050','ggf'),(3,'Rua Timóteo','44','uh','São Paulo','SP',1,'03938050','uh');
 /*!40000 ALTER TABLE `cliente_endereco` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -138,8 +142,9 @@ DROP TABLE IF EXISTS `forma_pagamento`;
 CREATE TABLE `forma_pagamento` (
   `id_forma_pagamento` int(11) NOT NULL AUTO_INCREMENT,
   `nome` varchar(30) NOT NULL,
+  `parcelas` int(11) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id_forma_pagamento`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COMMENT='Formas de Pagamento do Sistema';
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COMMENT='Formas de Pagamento do Sistema';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -148,7 +153,7 @@ CREATE TABLE `forma_pagamento` (
 
 LOCK TABLES `forma_pagamento` WRITE;
 /*!40000 ALTER TABLE `forma_pagamento` DISABLE KEYS */;
-INSERT INTO `forma_pagamento` VALUES (1,'Dinheiro'),(2,'Boleto'),(3,'Cartão Débito'),(4,'Cartão Crédito'),(5,'Vale Presente');
+INSERT INTO `forma_pagamento` VALUES (1,'Dinheiro',1),(2,'Boleto',1),(3,'Cartão Débito',1),(4,'Cartão Crédito',1),(5,'Cartão Crédito',2),(6,'Cartão Crédito',3),(7,'Cartão Crédito',4),(8,'Cartão Crédito',5),(9,'Cartão Crédito',6),(10,'Cartão Crédito',7),(11,'Cartão Crédito',8),(12,'Cartão Crédito',9),(13,'Cartão Crédito',10),(14,'Cartão Crédito',11),(15,'Cartão Crédito',12);
 /*!40000 ALTER TABLE `forma_pagamento` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -168,10 +173,11 @@ CREATE TABLE `funcionario` (
   `nascimento` datetime NOT NULL,
   `ativo` tinyint(1) DEFAULT NULL,
   `id_perfil` int(11) DEFAULT NULL,
+  `foto` varchar(1000) DEFAULT NULL,
   PRIMARY KEY (`id_usuario`),
   KEY `usuarios_fk` (`id_perfil`),
   CONSTRAINT `usuarios_fk` FOREIGN KEY (`id_perfil`) REFERENCES `funcionario_perfil` (`id_usuario_perfil`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Tabela de Usuários';
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='Tabela de Usuários';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -180,6 +186,7 @@ CREATE TABLE `funcionario` (
 
 LOCK TABLES `funcionario` WRITE;
 /*!40000 ALTER TABLE `funcionario` DISABLE KEYS */;
+INSERT INTO `funcionario` VALUES (1,'Damaris','Rafael','dam@gmail.com','1234','2000-01-01 00:00:00',1,1,NULL),(2,'Everton','Cesar','everton@gmail.com','81dc9bdb','2000-01-20 00:00:00',1,4,NULL),(3,'Rafa','Rafael','rafa@rafael.ra','202cb962','2000-01-01 00:00:00',1,1,'admin/funcionarios/media/jogo1.png');
 /*!40000 ALTER TABLE `funcionario` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -219,16 +226,16 @@ CREATE TABLE `pedido` (
   `data` datetime NOT NULL,
   `valor_total` float NOT NULL,
   `id_cliente` int(11) NOT NULL,
-  `id_vendedor` int(11) NOT NULL,
   `id_tipo_entrega` int(11) NOT NULL,
+  `id_endereco_entrega` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_pedido`),
   KEY `pedido_fk` (`id_tipo_entrega`),
   KEY `pedido_fk_1` (`id_cliente`),
-  KEY `pedido_fk_2` (`id_vendedor`),
+  KEY `pedido_fk_2` (`id_endereco_entrega`),
   CONSTRAINT `pedido_fk` FOREIGN KEY (`id_tipo_entrega`) REFERENCES `tipo_entrega` (`id_tipo_entrega`),
   CONSTRAINT `pedido_fk_1` FOREIGN KEY (`id_cliente`) REFERENCES `cliente` (`id_cliente`),
-  CONSTRAINT `pedido_fk_2` FOREIGN KEY (`id_vendedor`) REFERENCES `funcionario` (`id_usuario`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  CONSTRAINT `pedido_fk_2` FOREIGN KEY (`id_endereco_entrega`) REFERENCES `cliente_endereco` (`id_cliente_endereco`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -237,6 +244,7 @@ CREATE TABLE `pedido` (
 
 LOCK TABLES `pedido` WRITE;
 /*!40000 ALTER TABLE `pedido` DISABLE KEYS */;
+INSERT INTO `pedido` VALUES (1,'2020-02-03 17:02:59',2519,1,1,2),(2,'2020-02-03 17:08:09',2259,1,1,2);
 /*!40000 ALTER TABLE `pedido` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -256,7 +264,7 @@ CREATE TABLE `pedido_forma_pagamento` (
   KEY `pedido_forma_pagamento_fk_1` (`id_forma_pagamento`),
   CONSTRAINT `pedido_forma_pagamento_fk` FOREIGN KEY (`id_pedido`) REFERENCES `pedido` (`id_pedido`),
   CONSTRAINT `pedido_forma_pagamento_fk_1` FOREIGN KEY (`id_forma_pagamento`) REFERENCES `forma_pagamento` (`id_forma_pagamento`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Formas de Pagamento do Pedido.';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='Formas de Pagamento do Pedido.';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -265,6 +273,7 @@ CREATE TABLE `pedido_forma_pagamento` (
 
 LOCK TABLES `pedido_forma_pagamento` WRITE;
 /*!40000 ALTER TABLE `pedido_forma_pagamento` DISABLE KEYS */;
+INSERT INTO `pedido_forma_pagamento` VALUES (1,1,12),(2,2,9);
 /*!40000 ALTER TABLE `pedido_forma_pagamento` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -290,7 +299,7 @@ CREATE TABLE `pedido_item` (
   CONSTRAINT `pedido_item_fk` FOREIGN KEY (`id_pedido`) REFERENCES `pedido` (`id_pedido`),
   CONSTRAINT `pedido_item_fk_1` FOREIGN KEY (`id_pedido_item_status`) REFERENCES `pedido_item_status` (`id_pedido_item_status`),
   CONSTRAINT `pedido_item_fk_2` FOREIGN KEY (`id_produto`) REFERENCES `produto` (`id_produto`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -299,6 +308,7 @@ CREATE TABLE `pedido_item` (
 
 LOCK TABLES `pedido_item` WRITE;
 /*!40000 ALTER TABLE `pedido_item` DISABLE KEYS */;
+INSERT INTO `pedido_item` VALUES (1,1,1,1,1,1999,1),(2,1,3,3,4,520,1),(3,2,1,1,1,1999,1),(4,2,3,3,2,260,1);
 /*!40000 ALTER TABLE `pedido_item` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -313,7 +323,7 @@ CREATE TABLE `pedido_item_status` (
   `id_pedido_item_status` int(11) NOT NULL AUTO_INCREMENT,
   `nome` varchar(50) NOT NULL,
   PRIMARY KEY (`id_pedido_item_status`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='tabela com status dos pedidos';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='tabela com status dos pedidos';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -322,6 +332,7 @@ CREATE TABLE `pedido_item_status` (
 
 LOCK TABLES `pedido_item_status` WRITE;
 /*!40000 ALTER TABLE `pedido_item_status` DISABLE KEYS */;
+INSERT INTO `pedido_item_status` VALUES (1,'Ativo'),(2,'Cancelado');
 /*!40000 ALTER TABLE `pedido_item_status` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -476,4 +487,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-01-31 18:56:30
+-- Dump completed on 2020-02-03 17:10:12
