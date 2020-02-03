@@ -67,7 +67,7 @@
                 echo  "<div class='row'>
                 <div class='col-3 pnl-endereco'>";                
                 ?>
-                    <form action="create.php" method="post">
+                    <form action="create2.php" method="post">
                         <input id="meio_entrega" name="meio_entrega" value="<?php echo $meio_entrega; ?>" type="hidden"> 
                         <input id="forma_pagamento" name="forma_pagamento" value="<?php echo $forma_pagamento; ?>" type="hidden">                         
                         

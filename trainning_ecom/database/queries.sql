@@ -109,3 +109,15 @@ from
 	trainning_ecom_new.produto p
 	inner join trainning_ecom_new.categoria c on p.id_categoria = c.id_categoria 
 	group by c.nome;	
+
+
+
+start transaction;
+INSERT INTO trainning_ecom_oficial.categoria
+(nome)
+VALUES('Outros');
+
+select * from trainning_ecom_oficial.categoria;
+
+-- rollback;
+-- commit;
