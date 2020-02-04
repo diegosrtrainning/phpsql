@@ -121,3 +121,9 @@ select * from trainning_ecom_oficial.categoria;
 
 -- rollback;
 -- commit;
+
+
+use trainning_ecom_oficial;
+select id_cliente as id, nome, email from cliente
+union
+select id_usuario as id, nome, email from funcionario;

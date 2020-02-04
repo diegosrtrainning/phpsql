@@ -78,8 +78,8 @@
             ];
 
             $sqlFormaPagamento = "INSERT INTO trainning_ecom_oficial.pedido_forma_pagamento
-                (id_pedido, id_forma_pagamento)
-            VALUES(:id_pedido, :id_forma_pagamento)";
+                (id_pedido, id_forma_pagamento22222222)
+            VALUES(:id_pedido, :id_forma_pagamento222)";
 
             $idFormaPagamento = create($db, $sqlFormaPagamento, $params);
             $db->commit();

@@ -23,7 +23,8 @@
             $stmt->execute($params);
             $id = $db->lastInsertId();            
             return $id;
-        } catch(PDOExecption $e) {            
+        } 
+        catch(Exception $e) {            
             throw $e;
         }        
     }

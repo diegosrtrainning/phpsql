@@ -60,7 +60,7 @@
                 $params = [
                     "id_pedido" => $idPedido,
                     "id_produto" => $produto["id_produto"], 
-                    "valor_unitario" => $produto["id_produto"], 
+                    "valor_unitario" => $produto["valor"], 
                     "quantidade" => $itemCarrinho['quantidade'],
                     "valor_total" => ($produto['valor'] * $itemCarrinho['quantidade']),
                     "id_pedido_item_status" => 1
@@ -75,7 +75,7 @@
             ];
 
             $sqlFormaPagamento = "INSERT INTO trainning_ecom_oficial.pedido_forma_pagamento
-                (id_pedido, id_forma_pagamento)
+                (id_pedido, id_forma_pagamento22)
             VALUES(:id_pedido, :id_forma_pagamento)";
 
             $idFormaPagamento = create($db, $sqlFormaPagamento, $params);

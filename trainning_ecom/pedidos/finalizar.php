@@ -23,7 +23,7 @@
         </div>                  
         <?php            
             include __DIR__ . "/../libs/validarsessao-cliente.php";
-            include __DIR__ . "/../libs/db.php";
+            include __DIR__ . "/../libs/db2.php";
             include __DIR__ . "/../libs/forms/select.php";
 
             global $config;

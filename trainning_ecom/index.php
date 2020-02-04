@@ -1,45 +1,3 @@
-<?php
-    require __DIR__. '/libs/db.php';
-    $erro = "";
-    
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {         
-        $email = $_POST["inputEmail"];
-        $senha = md5($_POST["inputSenha"]);
-
-        try {
-            $db = conectar();
-
-            $sql = "select
-                        id_cliente,
-                        nome,
-                        sobrenome,
-                        email
-                    from
-                        trainning_ecom_oficial.cliente
-                    where
-                        email = '$email'
-                        and senha = '$senha'
-                        and ativo = 1";
-            
-            $clientes = read($db, $sql);
-
-            if(!empty($clientes)){                
-                session_start();
-                $_SESSION["idCliente"] = $clientes[0]["id_cliente"];
-                $_SESSION["nomeCliente"] = $clientes[0]["nome"];
-                header("Location: vitrine.php");
-                exit;
-            } else {
-                $erro = "Email e/ou senha inválido(s)";
-            }
-
-        } catch (\Throwable $th) {
-            //throw $th;
-        }        
-
-    }
-?>
-
 <!doctype html>
 <html lang="pt-br">
 
@@ -47,33 +5,61 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">        
-    <title>Bonus 1 - Login</title>
+    <title>Bonus 1 - Vitrine</title>
 
-    <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/login.css" rel="stylesheet">
+    <!-- Bootstrap core CSS -->            
+    <link href="css/main.css" rel="stylesheet">
+    <link href="css/vitrine.css" rel="stylesheet">
 </head>
 
-<body class="text-center">    
-    <form method="post" action="<?php $_SERVER["PHP_SELF"]?>" class="form-signin">
-        <img class="mb-4" src="media/logo.png" alt="" width="200">
-        <h1 class="h3 mb-3 font-weight-normal">Autenticação</h1>
-        <label for="inputEmail" class="sr-only">Email</label>
-        <input type="email" id="inputEmail" name="inputEmail" class="form-control" placeholder="Email" required autofocus value="">
-        <label for="inputSenha" class="sr-only">Senha</label>
-        <input type="password" id="inputSenha" name="inputSenha" class="form-control" placeholder="Senha" required>
-        <span class="erro"><?php echo $erro; ?></span>
-        <div class="checkbox mb-3">
-            <label>
-                <input type="checkbox" value="lembrememe"> Lembre-me
-            </label>
+<body class="text-center">
+    
+        <!-- TOPO DA PAGINA -->
+        <?php include __DIR__ . "/libs/topo.php"; ?>
+        <?php include __DIR__ . "/libs/db.php"; ?>
+        <?php include __DIR__ . "/carrinho/item.php"; ?>
+        
+        <div id="container" class="container">
+            <?php
+                $db = conectar();
+                $sql = "SELECT
+                            p.id_produto,
+                            p.nome,
+                            p.descricao,
+                            p.valor,
+                            p.ativo,
+                            p.foto_vitrine,
+                            c.nome as 'categoria'
+                        FROM
+                            trainning_ecom_oficial.produto p
+                            INNER JOIN trainning_ecom_oficial.CATEGORIA c ON p.ID_CATEGORIA = c.ID_CATEGORIA                        
+                        WHERE 
+                            p.ativo = 1";
+            
+                $produtos = read($db, $sql);                    
+            
+                echo '<div class="row card-container">';
+
+                $carrinho =[];
+                if(!empty($_COOKIE["carrinho"]))
+                {
+                    $carrinho = json_decode($_COOKIE["carrinho"]);
+                }                                                     
+
+                foreach ($produtos as $key => $produto) {                      
+                    if($key%3 == 0){
+                        echo '</div><div class="row card-container">';
+                    }
+                    
+                    $estaNoCarrinho = array_search($produto["id_produto"], array_column($carrinho, 'id_produto'));
+                    $estaNoCarrinho = ($estaNoCarrinho !== false);
+
+                    echo criarItem($produto, $estaNoCarrinho);
+                }                
+
+                echo '</div>';                
+            ?>                                        
         </div>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>        
-        <div class="links">
-            <a href="clientes">Não tenho cadastro</a> | <a href="admin">Sou funcionário</a>
-        </div>
-        <p class="mt-5 mb-3 text-muted">&copy; 2020</p>
-    </form>
 </body>
 
 </html>
